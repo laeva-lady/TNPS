@@ -78,7 +78,7 @@ class Todos {
           title = line.substr(match.position() + match.length(), line.length());
           todo_linenumber = linenumber;
           in_todo_block = true;
-          if (match.size() > 1) {
+          if (match.size() > 1 && !match[1].str().empty()) {
             current_id = match[1].str();
           }
         } else if (in_todo_block && line.starts_with(prefix)) {
@@ -86,6 +86,9 @@ class Todos {
           block += line.substr(prefix.length(), line.length()) + "\n";
         } else if (in_todo_block) {
           // End of TODO block
+          if (!block.empty() && block.back() == '\n') {
+            block.pop_back();
+          }
           todos.push_back(Todo(current_id, todo_linenumber, title, block, f));
           block.clear();
           current_id.clear();
@@ -114,7 +117,8 @@ class Todos {
       str += t.timestamp + separator;
       str += t.filepath + ":" + std::to_string(t.linenumber) + separator;
       str += t.title + separator;
-      str += t.text + "\n";
+      str += t.text;
+      str += "\n";
     }
 
     Output << str;

@@ -1,10 +1,8 @@
-;./source/main.cc:6;Get the files from cli args;
-;./source/main.cc:7;Get TODOs immediatly following another to be a separate entry;
-;./source/main.cc:8;insert timestamp to TODOs without them;
+;./source/main.cc:7;Get the files from cli args;
+;./source/main.cc:8;Get TODOs immediatly following another to be a separate entry;
+;./source/main.cc:9;insert timestamp to TODOs without them;
 ;./header/Todo.hpp:17;maybe rework this to make it a lil bit nicer???;
-;./header/Todo.hpp:108;change to JSON ?;
+;./header/Todo.hpp:111;change to JSON ?;
 ;./filename.txt:13;aoirsetn;aroisten
-
 2025-09-07 13:56:54;./filename.txt:9;aorsietnar;aroisteanrst
-
 2025-09-07 14:26:47;./filename.txt:16;aoristen;

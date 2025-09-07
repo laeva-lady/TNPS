@@ -1,4 +1,7 @@
 #include "../header/Utils.hpp"
+
+#include <chrono>
+#include <format>
 #include <sstream>
 
 std::vector<std::string> slit_string(std::string text) {
