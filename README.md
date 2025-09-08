@@ -2,9 +2,9 @@
 get TODOs from files
 
 ```
-tnps somefile
+tnps <pattern> <files>
 ```
 
-- prints TODOs to stdout
-- prints TODOs to file
-- adds timestamp to TODOs without a timestamp
+- prints <pattern>s to stdout
+- prints <pattern>s to file
+- adds timestamp to <pattern>s without one
