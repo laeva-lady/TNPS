@@ -2,6 +2,7 @@
 
 #include <print>
 #include <string>
+#include <vector>
 
 #include "../header/Utils.hpp"
 
@@ -12,7 +13,7 @@ struct Todo {
   std::string filepath;
   int linenumber;
 
-  // TODO: maybe rework this to make it a lil bit nicer???
+  // TODO(2025-09-08 09:59:51): maybe rework this to make it a lil bit nicer???
 
   Todo(std::string id, int linenumber, std::string title, std::string text, std::string filepath) {
     this->timestamp = id;
@@ -41,4 +42,5 @@ namespace Todos {
 std::vector<Todo> GetTodos(const std::vector<std::string>& files);
 void putToFile(std::vector<Todo> todos);
 void print(std::vector<Todo> todos);
+void addIdToTodos(const std::vector<std::string>& files, std::vector<Todo> todos);
 };  // namespace Todos

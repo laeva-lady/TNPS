@@ -10,7 +10,7 @@ rst
 // aroisteanrst
 
 -- arositeanrst
--- TODO: aoirsetn
+-- TODO(2025-09-08 10:11:00): aoirsetn
 -- aroisten
 
 -- TODO(2025-09-07 14:26:47): aoristen

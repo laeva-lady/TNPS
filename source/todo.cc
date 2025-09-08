@@ -1,6 +1,7 @@
 #include "../header/Todo.hpp"
 
 #include <fstream>
+#include <print>
 #include <regex>
 #include <string>
 
@@ -39,6 +40,7 @@ std::vector<Todo> Todos::GetTodos(const std::vector<std::string>& files) {
         title = line.substr(match.position() + match.length(), line.length());
         todo_linenumber = linenumber;
         in_todo_block = true;
+
         if (match.size() > 1 && !match[1].str().empty()) {
           current_id = match[1].str();
         }
@@ -68,7 +70,7 @@ std::vector<Todo> Todos::GetTodos(const std::vector<std::string>& files) {
   return todos;
 }
 void Todos::putToFile(std::vector<Todo> todos) {
-  // TODO: change to JSON ?
+  // TODO(2025-09-08 10:03:00): change to JSON ?
   std::ofstream Output("todos.txt");
 
   std::string str = "";
@@ -84,8 +86,36 @@ void Todos::putToFile(std::vector<Todo> todos) {
   Output << str;
   Output.close();
 }
+
 void Todos::print(std::vector<Todo> todos) {
   for (const Todo t : todos) {
     t.print();
+  }
+}
+
+void Todos::addIdToTodos(const std::vector<std::string>& files, std::vector<Todo> todos) {
+  for (const auto& todo : todos) {
+    if (todo.timestamp.empty()) {
+      std::ifstream file_in(todo.filepath);
+      std::vector<std::string> lines;
+      std::string line;
+      while (std::getline(file_in, line)) {
+        lines.push_back(line);
+      }
+      file_in.close();
+
+      std::string& line_to_modify = lines[todo.linenumber - 1];
+      std::regex todo_pattern(R"(TODO:)");
+      std::string timestamp = get_timestamp();
+      line_to_modify = std::regex_replace(line_to_modify, todo_pattern, "TODO(" + timestamp + "):");
+
+      std::ofstream file_out(todo.filepath);
+      for (const auto& l : lines) {
+        file_out << l << std::endl;
+      }
+      file_out.close();
+      std::println("Inserting timestamp <{}> to <{}> @ <{}>:<{}>", timestamp, todo.title, todo.filepath,
+                   todo.linenumber);
+    }
   }
 }
