@@ -22,19 +22,24 @@ struct Issue {
     this->filepath = filepath;
     this->linenumber = linenumber;
   }
+};
 
-  void print() const {
-    std::println("file: <{}>", this->filepath);
-    std::println("timestamp: <{}>", this->timestamp);
-    std::println("line: <{}>", this->linenumber);
-    std::println("title: <{}>", this->title);
-    std::println("text:");
-    auto lines = slit_string(this->text);
+template <>
+struct std::formatter<Issue> : std::formatter<std::string> {
+  auto format(const Issue& p, auto& ctx) const {
+    std::string str;
+    str += std::format("file: <{}>\n", p.filepath);
+    str += std::format("timestamp: <{}>\n", p.timestamp);
+    str += std::format("line: <{}>\n", p.linenumber);
+    str += std::format("title: <{}>\n", p.title);
+    str += std::format("text:\n");
+    auto lines = slit_string(p.text);
     for (auto line : lines) {
-      std::println("\t<{}>", line);
+      str += std::format("\t<{}>\n", line);
     }
 
-    std::println();
+    str += '\n';
+    return std::formatter<std::string>::format(str, ctx);
   }
 };
 
@@ -50,7 +55,7 @@ class Issues {
 
   void print() {
     for (const Issue t : this->issues) {
-      t.print();
+      std::println("{}", t);
     }
   }
 
