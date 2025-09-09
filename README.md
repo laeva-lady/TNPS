@@ -2,9 +2,14 @@
 get TODOs from files
 
 ```
-tnps <pattern> <files>
+tnps <flags>
 ```
 
-- prints <pattern>s to stdout
-- prints <pattern>s to file
-- adds timestamp to <pattern>s without one
+flags:
+- `-f` : select files, since this flags consumes the following arguments, `--` is needed to stop the swallow.
+- `-p` : select a pattern
+e.g.:
+```
+$ tnps -p "TODO" -f file1 file2 ...
+$ tnps -f file1 file2 ... -- -p "TODO"
+```
