@@ -5,13 +5,12 @@
 #include "../header/Todo.hpp"
 
 int main(int argc, char** argv) {
-  // TODO(2025-09-08 21:51:29): Make a flag to toggle printing to stdout/file
-
-  auto results = Args::parse(argc, argv); // TODO(2025-09-08 21:51:29): check if todos at end of line works????
+  auto results = Args::parse(argc, argv);
 
   if (results.has_value()) {
     Arguments arg = results.value();
-    std::println("{}", arg);
+    std::println("Using this pattern: {}, on these files: {}", arg.pattern, arg.files);
+    std::println("these were invalid arguments: {}", arg.invalids);
 
     Issues issues(arg.pattern, arg.files);
     issues.print();

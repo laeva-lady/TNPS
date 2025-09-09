@@ -1,5 +1,0 @@
-2025-09-08 21:51:29;source/main.cc:8;Make a flag to toggle printing to stdout/file;
-2025-09-08 21:51:29;source/main.cc:10;check if todos at end of line works????;
-2025-09-07 13:56:54;filename.txt:12;aorsietnar;aroisteanrst
-2025-09-07 14:26:47;filename.txt:19;aoristen;
-2025-09-08 10:11:00;filename.txt:16;aoirsetn;aroisten
